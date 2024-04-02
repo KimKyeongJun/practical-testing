@@ -1,5 +1,7 @@
 package sample.cafekiosk.unit;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.Test;
 import sample.cafekiosk.unit.beverage.Americano;
 import sample.cafekiosk.unit.beverage.Latte;
@@ -29,6 +31,7 @@ class CafeKioskTest {
     assertEquals(1, cafeKiosk.getBeverages().size());
  }
 
+ @DisplayName("음료 1개를 추가하면 주문 목록에 담긴다.") // DisplayName을 이용하여 테스트명을 섬세하기 작성
  @Test
  void add() {
   CafeKiosk cafeKiosk = new CafeKiosk();
@@ -84,17 +87,21 @@ class CafeKioskTest {
   assertThat(cafeKiosk.getBeverages()).isEmpty();
  }
 
+
+ @DisplayName("주문 목록에 담긴 상품들의 총 금액을 계산할 수 있다.")
  @Test
- void calcuateTotalPrice() {
-  // TDD 연습
+ void calculateTotalPrice() {
+  // Given
   CafeKiosk cafeKiosk = new CafeKiosk();
   Americano americano = new Americano();
   Latte latte = new Latte();
   cafeKiosk.add(americano);
   cafeKiosk.add(latte);
 
+  // When
   int totalPrice = cafeKiosk.calculateTotalPrice();
 
+  // Then
   assertThat(totalPrice).isEqualTo(8500);
  }
 
